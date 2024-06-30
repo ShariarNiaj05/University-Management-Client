@@ -1,10 +1,4 @@
-import { createElement } from "react";
 import { Layout, Menu, MenuProps } from "antd";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -52,11 +46,10 @@ const MainLayout = () => {
             height: "4rem",
             display: "flex",
             justifyContent: "center",
-            justifyItems: "center",
             alignItems: "center",
           }}
         >
-          <h1 style={{ height: "100%" }}>University Management</h1>
+          <h1>University Management</h1>
         </div>
         <Menu
           theme="dark"

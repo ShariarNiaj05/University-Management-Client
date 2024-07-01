@@ -1,37 +1,37 @@
-import { Layout, Menu, MenuProps } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
+import { Layout, Menu } from "antd";
+import { Outlet } from "react-router-dom";
 import { adminSidebarItems } from "../../routes/admin.routes";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items: MenuProps["items"] = [
-  {
-    key: "Dashboard",
-    label: <NavLink to={"/dashboard"}>Dashboard</NavLink>,
-  },
-  /* {
-    key: "2",
-    label: "Profile",
-  }, */
-  {
-    key: "User Management",
-    label: "User Management",
-    children: [
-      {
-        key: "Create Admin",
-        label: <NavLink to={"/create-admin"}>Create Admin</NavLink>,
-      },
-      {
-        key: "Create Student",
-        label: <NavLink to={"/create-student"}>Create Student</NavLink>,
-      },
-      {
-        key: "Create Faculty",
-        label: <NavLink to={"/create-faculty"}>Create Faculty</NavLink>,
-      },
-    ],
-  },
-];
+// const items: MenuProps["items"] = [
+//   {
+//     key: "Dashboard",
+//     label: <NavLink to={"/dashboard"}>Dashboard</NavLink>,
+//   },
+//   /* {
+//     key: "2",
+//     label: "Profile",
+//   }, */
+//   {
+//     key: "User Management",
+//     label: "User Management",
+//     children: [
+//       {
+//         key: "Create Admin",
+//         label: <NavLink to={"/create-admin"}>Create Admin</NavLink>,
+//       },
+//       {
+//         key: "Create Student",
+//         label: <NavLink to={"/create-student"}>Create Student</NavLink>,
+//       },
+//       {
+//         key: "Create Faculty",
+//         label: <NavLink to={"/create-faculty"}>Create Faculty</NavLink>,
+//       },
+//     ],
+//   },
+// ];
 
 const MainLayout = () => {
   return (

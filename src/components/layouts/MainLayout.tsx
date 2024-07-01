@@ -6,7 +6,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const items: MenuProps["items"] = [
   {
     key: "Dashboard",
-    label: <NavLink to={"/admin/dashboard"}>Dashboard</NavLink>,
+    label: <NavLink to={"/dashboard"}>Dashboard</NavLink>,
   },
   /* {
     key: "2",
@@ -18,15 +18,15 @@ const items: MenuProps["items"] = [
     children: [
       {
         key: "Create Admin",
-        label: <NavLink to={"/admin/create-admin"}>Create Admin</NavLink>,
+        label: <NavLink to={"/create-admin"}>Create Admin</NavLink>,
       },
       {
         key: "Create Student",
-        label: <NavLink to={"/admin/create-student"}>Create Student</NavLink>,
+        label: <NavLink to={"/create-student"}>Create Student</NavLink>,
       },
       {
         key: "Create Faculty",
-        label: <NavLink to={"/admin/create-faculty"}>Create Faculty</NavLink>,
+        label: <NavLink to={"/create-faculty"}>Create Faculty</NavLink>,
       },
     ],
   },

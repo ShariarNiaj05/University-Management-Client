@@ -86,7 +86,7 @@ export const adminPaths = [
 
 // generating admin sidebar for placing in mainlayout.tsx
 
-export const adminSidebarItems = adminPaths.reduce(
+/* export const adminSidebarItems = adminPaths.reduce(
   (acc: TSidebarItem[], item) => {
     if (item.path && item.name) {
       acc.push({
@@ -110,3 +110,4 @@ export const adminSidebarItems = adminPaths.reduce(
 
   []
 );
+ */

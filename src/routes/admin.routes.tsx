@@ -4,6 +4,7 @@ import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
 import { NavLink } from "react-router-dom";
+import { routesGenerator } from "../utils/routesGenerator";
 
 type TRoute = { path: string; element: ReactNode };
 type TSidebarItem = {
@@ -11,7 +12,7 @@ type TSidebarItem = {
   label: ReactNode;
   children?: TSidebarItem[];
 };
-const adminPaths = [
+export const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -64,7 +65,7 @@ const adminPaths = [
 ]; */
 
 // generating routes elements for admin.routes.tsx
-export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
+/* export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
   if (item.element && item.path) {
     acc.push({
       path: item.path,
@@ -81,7 +82,7 @@ export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
     });
   }
   return acc;
-}, []);
+}, []); */
 
 // generating admin sidebar for placing in mainlayout.tsx
 

@@ -30,7 +30,7 @@ const Login = () => {
 
     dispatch(
       setUser({
-        user: {},
+        user: user,
         token: res?.data?.accessToken,
       })
     );

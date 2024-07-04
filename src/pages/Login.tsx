@@ -16,7 +16,7 @@ const Login = () => {
       password: "admin123",
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const userInfo = {
       id: data.id,
       password: data.password,

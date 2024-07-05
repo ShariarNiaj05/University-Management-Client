@@ -5,7 +5,7 @@ const AcademicSemester = () => {
   console.log(data);
   return (
     <div>
-      <h1>{data}</h1>
+      <h1>{data.data?.map((item) => item.name)}</h1>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { setUser } from "../features/auth/authSlice";
+import { logout, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://university-management-server-alpha.vercel.app/api/v1",
@@ -28,7 +28,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  const result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 401) {
     // sending refresh token to generate new access token
@@ -47,9 +47,12 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     api.dispatch(
       setUser({
         user,
-        token: data?.data?.accessToken,
+        token: data.data.accessToken,
       })
     );
+    result = await baseQuery(args, api, extraOptions);
+  } else {
+    // api.dispatch(logout());
   }
   return result;
 };

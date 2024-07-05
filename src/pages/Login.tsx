@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import { FieldValues, useForm } from "react-hook-form";
-import { useLoginMutation } from "../redux/features/auth/authApi";
+import authAPi from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
-  const [login] = useLoginMutation();
+  const [login] = authAPi.useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

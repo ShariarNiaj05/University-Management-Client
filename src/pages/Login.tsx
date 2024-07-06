@@ -52,14 +52,12 @@ const Login = () => {
   return (
     <WrapperForm onSubmit={onSubmit}>
       <div>
-        <label htmlFor="id">id: </label>
         {/* <input type="text" id="id" {...register("id")} /> */}
-        <WrapperFormInput type="text" name="id" />
+        <WrapperFormInput type="text" name="userId" label="ID: " />
       </div>
       <div>
-        <label htmlFor="password">password: </label>
         {/* <input type="text" id="password" {...register("password")} /> */}
-        <WrapperFormInput type="text" name="password" />
+        <WrapperFormInput type="text" name="password" label="Password " />
       </div>
       <Button htmlType="submit">Login</Button>
     </WrapperForm>

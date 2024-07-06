@@ -1,3 +1,4 @@
+import { Input } from "antd";
 import { useFormContext } from "react-hook-form";
 
 const WrapperFormInput = ({
@@ -14,7 +15,7 @@ const WrapperFormInput = ({
   return (
     <>
       {label ? label : null}
-      <input type={type} id={name} {...register(`${name}`)} />
+      <Input type={type} id={name} {...register(`${name}`)} />
     </>
   );
 };

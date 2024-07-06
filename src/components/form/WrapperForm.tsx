@@ -1,9 +1,13 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
 
 const WrapperForm = ({ onSubmit, children }: FieldValues) => {
-  const { handleSubmit } = useForm();
+  const methods = useForm();
 
-  return <form onClick={handleSubmit(onSubmit)}>{children}</form>;
+  return (
+    <FormProvider {...methods}>
+      <form onClick={methods.handleSubmit(onSubmit)}>{children}</form>
+    </FormProvider>
+  );
 };
 
 export default WrapperForm;

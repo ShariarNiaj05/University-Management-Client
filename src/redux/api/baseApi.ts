@@ -9,8 +9,8 @@ import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "https://university-management-server-alpha.vercel.app/api/v1",
-  baseUrl: "http://localhost:5000/api/v1",
+  baseUrl: "https://university-management-server-alpha.vercel.app/api/v1",
+  // baseUrl: "http://localhost:5000/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -34,8 +34,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     // sending refresh token to generate new access token
     console.log("Sending refresh token");
     const res = await fetch(
-      // "https://university-management-server-alpha.vercel.app/api/v1/auth/refresh-token",
-      "http://localhost:5000/api/v1/auth/refresh-token",
+      "https://university-management-server-alpha.vercel.app/api/v1/auth/refresh-token",
+      // "http://localhost:5000/api/v1/auth/refresh-token",
       {
         method: "POST",
         credentials: "include",
@@ -44,18 +44,20 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 
     const data = await res.json();
     console.log("access token", data);
-    const user = (api.getState() as RootState).auth.user;
-    console.log("user", user);
+    if (data?.data?.accessToken) {
+      const user = (api.getState() as RootState).auth.user;
+      console.log("user", user);
 
-    api.dispatch(
-      setUser({
-        user,
-        token: data?.data?.accessToken,
-      })
-    );
+      api.dispatch(
+        setUser({
+          user,
+          token: data?.data?.accessToken,
+        })
+      );
+    } else {
+      api.dispatch(logout());
+    }
     result = await baseQuery(args, api, extraOptions);
-  } else {
-    // api.dispatch(logout());
   }
   return result;
 };

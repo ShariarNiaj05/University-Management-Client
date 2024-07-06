@@ -27,7 +27,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError
-> = async (args, api, extraOptions) => {
+> = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   console.log(result);
   if (result?.error?.status === 401) {

@@ -6,6 +6,7 @@ import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import WrapperForm from "../components/form/WrapperForm";
 
 const Login = () => {
   const [login] = authAPi.useLoginMutation();
@@ -46,7 +47,7 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <WrapperForm onSubmit={onSubmit}>
       <div>
         <label htmlFor="id">id: </label>
         <input type="text" id="id" {...register("id")} />
@@ -56,7 +57,7 @@ const Login = () => {
         <input type="text" id="password" {...register("password")} />
       </div>
       <Button htmlType="submit">Login</Button>
-    </form>
+    </WrapperForm>
   );
 };
 

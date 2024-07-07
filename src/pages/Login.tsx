@@ -1,5 +1,5 @@
-import { Button } from "antd";
-import { FieldValues, useForm, useFormContext } from "react-hook-form";
+import { Button, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import authAPi from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
@@ -14,16 +14,9 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  /*   const { register, handleSubmit } = useForm({
-    defaultValues: {
-      id: "A-0001",
-      password: "admin123",
-    },
-  }); */
-
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
-    /* const toastId = toast.loading("Logging in");
+    const toastId = toast.loading("Logging in");
     try {
       const userInfo = {
         id: data.id,
@@ -47,20 +40,22 @@ const Login = () => {
         id: toastId,
         duration: 2000,
       });
-    } */
+    }
   };
   return (
-    <WrapperForm onSubmit={onSubmit}>
-      <div>
-        {/* <input type="text" id="id" {...register("id")} /> */}
-        <WrapperFormInput type="text" name="userId" label="ID: " />
-      </div>
-      <div>
-        {/* <input type="text" id="password" {...register("password")} /> */}
-        <WrapperFormInput type="text" name="password" label="Password " />
-      </div>
-      <Button htmlType="submit">Login</Button>
-    </WrapperForm>
+    <Row justify={"center"} align={"middle"} style={{ height: "100vh" }}>
+      <WrapperForm onSubmit={onSubmit}>
+        <div>
+          {/* <input type="text" id="id" {...register("id")} /> */}
+          <WrapperFormInput type="text" name="userId" label="ID: " />
+        </div>
+        <div>
+          {/* <input type="text" id="password" {...register("password")} /> */}
+          <WrapperFormInput type="text" name="password" label="Password " />
+        </div>
+        <Button htmlType="submit">Login</Button>
+      </WrapperForm>
+    </Row>
   );
 };
 

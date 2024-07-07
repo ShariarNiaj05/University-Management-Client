@@ -14,6 +14,10 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const defaultValues = {
+    id: "A-0001",
+    password: "admin123",
+  };
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
     const toastId = toast.loading("Logging in");
@@ -44,10 +48,10 @@ const Login = () => {
   };
   return (
     <Row justify={"center"} align={"middle"} style={{ height: "100vh" }}>
-      <WrapperForm onSubmit={onSubmit}>
+      <WrapperForm onSubmit={onSubmit} defaultValues={defaultValues}>
         <div>
           {/* <input type="text" id="id" {...register("id")} /> */}
-          <WrapperFormInput type="text" name="userId" label="ID: " />
+          <WrapperFormInput type="text" name="id" label="ID: " />
         </div>
         <div>
           {/* <input type="text" id="password" {...register("password")} /> */}

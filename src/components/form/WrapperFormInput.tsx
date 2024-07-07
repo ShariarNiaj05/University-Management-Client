@@ -1,15 +1,12 @@
 import { Input } from "antd";
 import { Controller } from "react-hook-form";
 
-const WrapperFormInput = ({
-  type,
-  name,
-  label,
-}: {
+type TInputProps = {
   type: string;
   name: string;
-  label: string;
-}) => {
+  label?: string;
+};
+const WrapperFormInput = ({ type, name, label }: TInputProps) => {
   // const { register } = useFormContext();
 
   return (

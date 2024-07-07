@@ -1,7 +1,26 @@
-import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { ReactNode } from "react";
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
-const WrapperForm = ({ onSubmit, children }: FieldValues) => {
-  const methods = useForm();
+type TFormProps = {
+  onSubmit: SubmitHandler<FieldValues>;
+  children: ReactNode;
+  defaultValues: {
+    id: string;
+    password: string;
+  };
+};
+
+const WrapperForm = ({ onSubmit, children, defaultValues }: TFormProps) => {
+  const formConfig = {};
+  if (defaultValues) {
+    formConfig["defaultValues"] = defaultValues;
+  }
+  const methods = useForm({ formConfig });
 
   return (
     <FormProvider {...methods}>

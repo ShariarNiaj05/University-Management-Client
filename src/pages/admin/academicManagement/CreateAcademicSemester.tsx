@@ -3,20 +3,24 @@ import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
 import { Button, Col, Flex } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
+import { semesterOptions } from "../../../constants/semester";
+import { monthOptions } from "../../../constants/global";
 
-const nameOptions = [
+/* const nameOptions = [
   { value: "01", label: "Autumn" },
   { value: "02", label: "Summer" },
   { value: "03", label: "Fall" },
-];
+]; */
 
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const name = nameOptions[Number(data?.name) - 1]?.label;
+    const name = semesterOptions[Number(data?.name) - 1]?.label;
     const semesterData = {
       name,
       code: data.name,
       year: data.year,
+      startMonth: data.startMonth,
+      endMonth: data.endMonth,
     };
 
     console.log(semesterData);
@@ -32,18 +36,14 @@ const CreateAcademicSemester = () => {
     <Flex justify="center" align="center">
       <Col span={6}>
         <PHForm onSubmit={onSubmit}>
-          <PHSelect label="Name" name="name" options={nameOptions} />
+          <PHSelect label="Name" name="name" options={semesterOptions} />
           <PHSelect label="Year" name="year" options={yearOptions} />
           <PHSelect
             label="Start Month"
             name="startMonth"
-            // options={monthOptions}
+            options={monthOptions}
           />
-          <PHSelect
-            label="End Month"
-            name="endMonth"
-            // options={monthOptions}
-          />
+          <PHSelect label="End Month" name="endMonth" options={monthOptions} />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

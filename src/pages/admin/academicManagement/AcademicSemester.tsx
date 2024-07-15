@@ -97,7 +97,19 @@ const AcademicSemester = () => {
     _sorter,
     extra
   ) => {
-    console.log(filters);
+    if (extra.action === "filter") {
+      const queryParams: TQueryParam[] = [];
+
+      filters.name?.forEach((item) =>
+        queryParams.push({ name: "name", value: item })
+      );
+
+      filters.year?.forEach((item) =>
+        queryParams.push({ name: "year", value: item })
+      );
+
+      setParams(queryParams);
+    }
   };
 
   return (

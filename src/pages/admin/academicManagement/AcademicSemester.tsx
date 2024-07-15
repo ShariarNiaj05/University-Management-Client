@@ -112,6 +112,9 @@ const AcademicSemester = () => {
     }
   };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <Table
       loading={isFetching}

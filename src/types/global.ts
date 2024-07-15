@@ -1,4 +1,4 @@
-import { BaseQueryApi } from "@reduxjs/toolkit/query";
+import { BaseQueryApi } from '@reduxjs/toolkit/query';
 
 export type TError = {
   data: {
@@ -8,11 +8,12 @@ export type TError = {
   };
   status: number;
 };
+
 export type TMeta = {
   limit: number;
   page: number;
-  total: 6;
-  totalPage: 1;
+  total: number;
+  totalPage: number;
 };
 
 export type TResponse<T> = {

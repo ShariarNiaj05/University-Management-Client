@@ -6,6 +6,7 @@ import { semesterOptions } from "../../../constants/semester";
 import { monthOptions } from "../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { academicSemesterSchema } from "../../../schemas/academicManagement.schema";
 
 /* const nameOptions = [
   { value: "01", label: "Autumn" },
@@ -32,8 +33,6 @@ const CreateAcademicSemester = () => {
     value: String(currentYear + number),
     label: String(currentYear + number),
   }));
-
-  const academicSemesterSchema = z.object({});
 
   return (
     <Flex justify="center" align="center">

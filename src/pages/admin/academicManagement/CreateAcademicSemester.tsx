@@ -5,7 +5,6 @@ import PHSelect from "../../../components/form/PHSelect";
 import { semesterOptions } from "../../../constants/semester";
 import { monthOptions } from "../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { academicSemesterSchema } from "../../../schemas/academicManagement.schema";
 
 /* const nameOptions = [

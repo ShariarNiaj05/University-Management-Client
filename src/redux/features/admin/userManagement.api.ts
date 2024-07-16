@@ -36,4 +36,4 @@ const userManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-const { useAddStudentMutation } = userManagementApi;
+export const { useAddStudentMutation } = userManagementApi;

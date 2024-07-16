@@ -1,6 +1,7 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
+import { Button } from "antd";
 
 const CreateStudent = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -9,6 +10,8 @@ const CreateStudent = () => {
   return (
     <PHForm onSubmit={onSubmit}>
       <PHInput type="text" name="name" label="Name" />
+
+      <Button htmlType="submit">Submit</Button>
     </PHForm>
   );
 };

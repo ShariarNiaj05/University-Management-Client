@@ -5,8 +5,10 @@ import { Button, Col, Divider, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import { genderOptions } from "../../../constants/global";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
-import { semesterOptions } from "../../../constants/semester";
+import {
+  useGetAcademicDepartmentsQuery,
+  useGetAllSemestersQuery,
+} from "../../../redux/features/admin/academicManagement.api";
 import PHDatePicker from "../../../components/form/PHDatePicker";
 
 const CreateStudent = () => {
@@ -17,14 +19,27 @@ const CreateStudent = () => {
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
-  // const { data: dData, isLoading: dIsLoading } =
-  //   useGetAcademicDepartmentsQuery(undefined);
+  const { data: dData, isLoading: dIsLoading } =
+    useGetAcademicDepartmentsQuery(undefined);
+
+  const semesterOptions = sData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name} ${item.year}`,
+  }));
+
+  const departmentOptions = dData?.data?.map((item) => ({
+    value: item._id,
+    label: item.name,
+  }));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    // const formData = new FormData();
-    // formData.append("data", JSON.stringify(data));
-
+    const studentData = {
+      password: "student123",
+      student: data,
+    };
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(studentData));
+    addStudent(formData);
     // console.log([...formData.entries()]);
     // console.log(Object.fromEntries(formData));
   };
@@ -177,12 +192,12 @@ const CreateStudent = () => {
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              {/* <PHSelect
-                // options={departmentOptions}
-                // disabled={dIsLoading}
+              <PHSelect
+                options={departmentOptions}
+                disabled={dIsLoading}
                 name="academicDepartment"
                 label="Admission Department"
-              /> */}
+              />
             </Col>
           </Row>
           <Button htmlType="submit">Submit</Button>

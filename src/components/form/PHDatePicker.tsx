@@ -1,7 +1,12 @@
 import { DatePicker, Form } from "antd";
 import { Controller } from "react-hook-form";
 
-const PHDatePicker = ({ name, label }) => {
+type TDatePickerProps = {
+  name: string;
+  label?: string;
+};
+
+const PHDatePicker = ({ name, label }: TDatePickerProps) => {
   return (
     <Controller
       name={name}

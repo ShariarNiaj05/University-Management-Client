@@ -7,6 +7,7 @@ import { genderOptions } from "../../../constants/global";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { semesterOptions } from "../../../constants/semester";
+import PHDatePicker from "../../../components/form/PHDatePicker";
 
 const CreateStudent = () => {
   const [addStudent, { data, error }] = useAddStudentMutation();
@@ -48,7 +49,8 @@ const CreateStudent = () => {
               {/* <PHInput type="text" name="gender" label="Gender" /> */}
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput type="text" name="dateOfBirth" label="Date Of Birth" />
+              <PHDatePicker name="dateOfBirth" label="Date Of Birth" />
+              {/* <PHInput type="text" name="dateOfBirth" label="Date Of Birth" /> */}
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput type="text" name="bloogGroup" label="Blood Group" />
@@ -169,7 +171,7 @@ const CreateStudent = () => {
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHSelect
                 options={semesterOptions}
-                // disabled={sIsLoading}
+                disabled={sIsLoading}
                 name="admissionSemester"
                 label="Admission Semester"
               />

@@ -1,4 +1,11 @@
-import { Button, Space, Table, TableColumnsType, TableProps } from "antd";
+import {
+  Button,
+  Pagination,
+  Space,
+  Table,
+  TableColumnsType,
+  TableProps,
+} from "antd";
 import { useState } from "react";
 import { TQueryParam, TStudent } from "../../../types";
 import { Link } from "react-router-dom";
@@ -78,34 +85,15 @@ const StudentData = () => {
     },
   ];
 
-  const onChange: TableProps<TTableData>["onChange"] = (
-    _pagination,
-    filters,
-    _sorter,
-    extra
-  ) => {
-    if (extra.action === "filter") {
-      const queryParams: TQueryParam[] = [];
-
-      filters.name?.forEach((item) =>
-        queryParams.push({ name: "name", value: item })
-      );
-
-      filters.year?.forEach((item) =>
-        queryParams.push({ name: "year", value: item })
-      );
-
-      setParams(queryParams);
-    }
-  };
-
   return (
-    <Table
-      loading={isFetching}
-      columns={columns}
-      dataSource={tableData}
-      onChange={onChange}
-    />
+    <>
+      <Table
+        loading={isFetching}
+        columns={columns}
+        dataSource={tableData}
+        onChange={onChange}
+      />
+    </>
   );
 };
 

@@ -25,6 +25,7 @@ const StudentData = () => {
     isLoading,
     isFetching,
   } = useGetAllStudentsQuery([
+    { name: "limit", value: 3 },
     { name: "page", value: page },
     { name: "sort", value: "id" },
     ...params,
@@ -85,6 +86,27 @@ const StudentData = () => {
     },
   ];
 
+  const onChange: TableProps<TTableData>["onChange"] = (
+    _pagination,
+    filters,
+    _sorter,
+    extra
+  ) => {
+    if (extra.action === "filter") {
+      const queryParams: TQueryParam[] = [];
+
+      filters.name?.forEach((item) =>
+        queryParams.push({ name: "name", value: item })
+      );
+
+      filters.year?.forEach((item) =>
+        queryParams.push({ name: "year", value: item })
+      );
+
+      setParams(queryParams);
+    }
+  };
+
   return (
     <>
       <Table
@@ -92,6 +114,13 @@ const StudentData = () => {
         columns={columns}
         dataSource={tableData}
         onChange={onChange}
+        pagination={false}
+      />
+      <Pagination
+        current={page}
+        onChange={(value) => setPage(value)}
+        pageSize={metaData?.limit}
+        total={metaData?.total}
       />
     </>
   );

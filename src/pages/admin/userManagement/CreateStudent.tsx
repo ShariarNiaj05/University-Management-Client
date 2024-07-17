@@ -1,9 +1,9 @@
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
-import { Button, Col, Divider, Row } from "antd";
+import { Button, Col, Divider, Form, Input, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
-import { genderOptions } from "../../../constants/global";
+import { bloodGroupOptions, genderOptions } from "../../../constants/global";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
 import {
   useGetAcademicDepartmentsQuery,
@@ -39,7 +39,10 @@ const CreateStudent = () => {
     };
     const formData = new FormData();
     formData.append("data", JSON.stringify(studentData));
-    addStudent(formData);
+    formData.append("file", data.image);
+    // addStudent(formData);
+
+    console.log(data);
     // console.log([...formData.entries()]);
     // console.log(Object.fromEntries(formData));
   };
@@ -68,7 +71,28 @@ const CreateStudent = () => {
               {/* <PHInput type="text" name="dateOfBirth" label="Date Of Birth" /> */}
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput type="text" name="bloogGroup" label="Blood Group" />
+              <PHSelect
+                options={bloodGroupOptions}
+                name="bloogGroup"
+                label="Blood group"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <Controller
+                name="image"
+                render={({ field: { onChange, value, ...field } }) => (
+                  <Form.Item label="Picture">
+                    <Input
+                      type="file"
+                      value={value?.fileName}
+                      {...field}
+                      onChange={(e) => onChange(e.target.files?.[0])}
+                    />
+                  </Form.Item>
+                )}
+              />
+
+              {/* <PHInput type="file" name="image" label="Picture" /> */}
             </Col>
           </Row>
 

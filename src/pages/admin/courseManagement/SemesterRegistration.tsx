@@ -12,8 +12,11 @@ import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicM
 import { toast } from "sonner";
 import PHDatePicker from "../../../components/form/PHDatePicker";
 import PHInput from "../../../components/form/PHInput";
+import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
+import { TResponse } from "../../../types";
 
 const SemesterRegistration = () => {
+  const [addSemester] = useAddRegisteredSemesterMutation();
   const { data: academicSemester } = useGetAllSemestersQuery([
     { name: "sort", value: "year" },
   ]);
@@ -26,14 +29,10 @@ const SemesterRegistration = () => {
 
     const semesterData = {
       ...data,
-      // code: data.name,
-      // year: data.year,
-      // startMonth: data.startMonth,
-      // endMonth: data.endMonth,
     };
 
-    /*  try {
-      const res = (await addAcademicSemester(semesterData)) as TResponse;
+    try {
+      const res = (await addSemester(semesterData)) as TResponse<any>;
       console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });
@@ -42,7 +41,7 @@ const SemesterRegistration = () => {
       }
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
-    } */
+    }
     console.log(semesterData);
   };
 

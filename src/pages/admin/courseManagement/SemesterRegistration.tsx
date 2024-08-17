@@ -10,8 +10,14 @@ import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicM
 import { toast } from "sonner";
 
 const SemesterRegistration = () => {
-  const { data: academicSemester } = useGetAllSemestersQuery(undefined);
+  const { data: academicSemester } = useGetAllSemestersQuery([
+    { name: "sort", value: "year" },
+  ]);
   console.log(academicSemester);
+  const academicSemesterOptions = academicSemester?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name} ${item.year}`,
+  }));
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 
@@ -46,7 +52,11 @@ const SemesterRegistration = () => {
           onSubmit={onSubmit}
           resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHSelect label="Name" name="name" options={semesterOptions} />
+          <PHSelect
+            label="Name"
+            name="name"
+            options={academicSemesterOptions}
+          />
           <PHSelect
             label="Start Month"
             name="startMonth"

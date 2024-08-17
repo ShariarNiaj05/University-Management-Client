@@ -29,6 +29,8 @@ const SemesterRegistration = () => {
 
     const semesterData = {
       ...data,
+      minCredit: Number(data?.minCredit),
+      maxCredit: Number(data?.maxCredit),
     };
 
     try {
@@ -53,8 +55,8 @@ const SemesterRegistration = () => {
           // resolver={zodResolver(academicSemesterSchema)}
         >
           <PHSelect
-            label="Name"
-            name="name"
+            label="Academic Semester"
+            name="academicSemester"
             options={academicSemesterOptions}
           />
           <PHSelect

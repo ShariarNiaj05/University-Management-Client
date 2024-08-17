@@ -2,18 +2,21 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import { Button, Col, Flex } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
-import { semesterOptions } from "../../../constants/semester";
-import { monthOptions } from "../../../constants/global";
+import {
+  semesterOptions,
+  semesterStatusOptions,
+} from "../../../constants/semester";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schemas/academicManagement.schema";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
+import PHDatePicker from "../../../components/form/PHDatePicker";
+import PHInput from "../../../components/form/PHInput";
 
 const SemesterRegistration = () => {
   const { data: academicSemester } = useGetAllSemestersQuery([
     { name: "sort", value: "year" },
   ]);
-  console.log(academicSemester);
   const academicSemesterOptions = academicSemester?.data?.map((item) => ({
     value: item._id,
     label: `${item.name} ${item.year}`,
@@ -21,14 +24,12 @@ const SemesterRegistration = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 
-    const name = semesterOptions[Number(data?.name) - 1]?.label;
-
     const semesterData = {
-      name,
-      code: data.name,
-      year: data.year,
-      startMonth: data.startMonth,
-      endMonth: data.endMonth,
+      ...data,
+      // code: data.name,
+      // year: data.year,
+      // startMonth: data.startMonth,
+      // endMonth: data.endMonth,
     };
 
     /*  try {
@@ -50,7 +51,7 @@ const SemesterRegistration = () => {
       <Col span={6}>
         <PHForm
           onSubmit={onSubmit}
-          resolver={zodResolver(academicSemesterSchema)}
+          // resolver={zodResolver(academicSemesterSchema)}
         >
           <PHSelect
             label="Name"
@@ -58,11 +59,14 @@ const SemesterRegistration = () => {
             options={academicSemesterOptions}
           />
           <PHSelect
-            label="Start Month"
-            name="startMonth"
-            options={monthOptions}
+            name="status"
+            label="Status"
+            options={semesterStatusOptions}
           />
-          <PHSelect label="End Month" name="endMonth" options={monthOptions} />
+          <PHDatePicker name="startDate" label="Start Date" />
+          <PHDatePicker name="endDate" label="End Date" />
+          <PHInput type="text" name="minCredit" label="Min Credit" />
+          <PHInput type="text" name="maxCredit" label="Max Credit" />
 
           <Button htmlType="submit">Submit</Button>
         </PHForm>

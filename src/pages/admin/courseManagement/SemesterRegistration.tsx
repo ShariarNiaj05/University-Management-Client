@@ -2,12 +2,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import { Button, Col, Flex } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
-import {
-  semesterOptions,
-  semesterStatusOptions,
-} from "../../../constants/semester";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { academicSemesterSchema } from "../../../schemas/academicManagement.schema";
+import { semesterStatusOptions } from "../../../constants/semester";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
 import PHDatePicker from "../../../components/form/PHDatePicker";

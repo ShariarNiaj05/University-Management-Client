@@ -1,5 +1,4 @@
-import { Button, Table, TableColumnsType, TableProps } from "antd";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
+import { Button, Table, TableColumnsType } from "antd";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";

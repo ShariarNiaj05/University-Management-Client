@@ -8,6 +8,21 @@ export type TTableData = Pick<
   "name" | "year" | "startMonth" | "endMonth"
 >;
 
+const items = [
+  {
+    label: "Upcoming",
+    key: "UPCOMING",
+  },
+  {
+    label: "Ongoing",
+    key: "ONGOING",
+  },
+  {
+    label: "Ended",
+    key: "ENDED",
+  },
+];
+
 const RegisteredSemesters = () => {
   // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
   const {
@@ -113,20 +128,5 @@ const RegisteredSemesters = () => {
     />
   );
 };
-
-const items = [
-  {
-    label: "Upcoming",
-    key: "UPCOMING",
-  },
-  {
-    label: "Ongoing",
-    key: "ONGOING",
-  },
-  {
-    label: "Ended",
-    key: "ENDED",
-  },
-];
 
 export default RegisteredSemesters;

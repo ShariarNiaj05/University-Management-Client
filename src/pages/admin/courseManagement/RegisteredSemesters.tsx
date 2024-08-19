@@ -1,4 +1,4 @@
-import { Button, Table, TableColumnsType } from "antd";
+import { Button, Table, TableColumnsType, Tag } from "antd";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";
@@ -38,6 +38,19 @@ const RegisteredSemesters = () => {
       title: "Status",
       key: "status",
       dataIndex: "status",
+      render: (item) => {
+        let color;
+        if (item === "UPCOMING") {
+          color = "blue";
+        }
+        if (item === "ONGOING") {
+          color = "green";
+        }
+        if (item === "ENDED") {
+          color = "red";
+        }
+        return <Tag color={color}>{item}</Tag>;
+      },
     },
     {
       title: "Start Date",

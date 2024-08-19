@@ -1,4 +1,4 @@
-import { Button, Table, TableColumnsType, Tag } from "antd";
+import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";
@@ -27,6 +27,14 @@ const RegisteredSemesters = () => {
       status,
     })
   );
+  const handleStatusDropDown = (data) => {
+    console.log(data);
+  };
+
+  const menuProps = {
+    items,
+    onclick: handleStatusDropDown,
+  };
 
   const columns: TableColumnsType<TTableData> = [
     {
@@ -67,9 +75,9 @@ const RegisteredSemesters = () => {
       key: "x",
       render: () => {
         return (
-          <div>
+          <Dropdown menu={menuProps}>
             <Button>Update</Button>
-          </div>
+          </Dropdown>
         );
       },
     },
@@ -105,5 +113,20 @@ const RegisteredSemesters = () => {
     />
   );
 };
+
+const items = [
+  {
+    label: "Upcoming",
+    key: "UPCOMING",
+  },
+  {
+    label: "Ongoing",
+    key: "ONGOING",
+  },
+  {
+    label: "Ended",
+    key: "ENDED",
+  },
+];
 
 export default RegisteredSemesters;

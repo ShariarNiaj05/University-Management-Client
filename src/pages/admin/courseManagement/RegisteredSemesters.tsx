@@ -2,6 +2,7 @@ import { Button, Table, TableColumnsType, TableProps } from "antd";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
+import moment from "moment";
 
 export type TTableData = Pick<
   TAcademicSemester,
@@ -22,9 +23,8 @@ const RegisteredSemesters = () => {
     ({ _id, academicSemester, startDate, endDate, status }) => ({
       key: _id,
       name: `${academicSemester.name} ${academicSemester.year}`,
-
-      startDate,
-      endDate,
+      startDate: moment(new Date(startDate)).format("MMMM "),
+      endDate: moment(new Date(endDate)).format("MMMM "),
       status,
     })
   );

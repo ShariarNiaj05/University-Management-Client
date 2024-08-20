@@ -88,10 +88,10 @@ const RegisteredSemesters = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
         return (
           <Dropdown menu={menuProps}>
-            <Button>Update</Button>
+            <Button onClick={() => console.log(item)}>Update</Button>
           </Dropdown>
         );
       },

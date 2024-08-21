@@ -49,11 +49,10 @@ const CreateCourse = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHInput type="text" name="title" label="Min Credit" />
-          <PHInput type="text" name="prefix" label="Max Credit" />
-          <PHInput type="text" name="maxCredit" label="Max Credit" />
-          <PHInput type="text" name="maxCredit" label="Max Credit" />
-          <PHInput type="text" name="maxCredit" label="Max Credit" />
+          <PHInput type="text" name="title" label="Title" />
+          <PHInput type="text" name="prefix" label="Prefix" />
+          <PHInput type="text" name="code" label="Code" />
+          <PHInput type="text" name="credits" label="Credit" />
 
           <Button htmlType="submit">Submit</Button>
         </PHForm>

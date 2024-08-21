@@ -44,13 +44,13 @@ const RegisteredSemesters = () => {
       status,
     })
   );
-  const handleStatusDropDown = (data) => {
-    console.log(data);
+  const handleStatusUpdate = (data) => {
+    console.log(semesterID);
   };
 
   const menuProps = {
     items,
-    onclick: handleStatusDropDown,
+    onclick: handleStatusUpdate,
   };
 
   const columns: TableColumnsType<TTableData> = [
@@ -93,7 +93,7 @@ const RegisteredSemesters = () => {
       render: (item) => {
         return (
           <Dropdown menu={menuProps} trigger={["click"]}>
-            <Button onClick={() => setSemesterId(item._id)}>Update</Button>
+            <Button onClick={() => setSemesterId(item.key)}>Update</Button>
           </Dropdown>
         );
       },

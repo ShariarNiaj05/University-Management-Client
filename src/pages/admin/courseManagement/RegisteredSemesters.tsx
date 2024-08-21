@@ -2,6 +2,7 @@ import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";
+import { useState } from "react";
 
 export type TTableData = Pick<
   TAcademicSemester,
@@ -25,6 +26,7 @@ const items = [
 
 const RegisteredSemesters = () => {
   // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
+  const [semesterID, setSemesterId] = useState("");
   const {
     data: semesterData,
     isLoading,
@@ -90,8 +92,8 @@ const RegisteredSemesters = () => {
       key: "x",
       render: (item) => {
         return (
-          <Dropdown menu={menuProps}>
-            <Button onClick={() => console.log(item)}>Update</Button>
+          <Dropdown menu={menuProps} trigger={["click"]}>
+            <Button onClick={() => setSemesterId(item._id)}>Update</Button>
           </Dropdown>
         );
       },

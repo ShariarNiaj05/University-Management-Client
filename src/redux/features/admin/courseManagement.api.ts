@@ -37,7 +37,7 @@ const courseManagementApi = baseApi.injectEndpoints({
     updateRegisteredSemester: builder.mutation({
       query: (args) => ({
         url: `/semester-registrations/${args.id}`,
-        method: "POST",
+        method: "PATCH",
         body: args.data,
       }),
     }),

@@ -45,6 +45,12 @@ const RegisteredSemesters = () => {
     })
   );
   const handleStatusUpdate = (data) => {
+    const updateData = {
+      id: semesterID,
+      data: {
+        status: data.key,
+      },
+    };
     console.log(semesterID);
   };
 

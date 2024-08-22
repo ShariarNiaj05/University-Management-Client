@@ -32,7 +32,7 @@ const Courses = () => {
       title: "Action",
       key: "x",
       render: (item) => {
-        return <AddFacultyModal data={item} />;
+        return <AddFacultyModal facultyInfo={item} />;
       },
     },
   ];
@@ -64,8 +64,20 @@ const AddFacultyModal = ({ data }) => {
   const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
   const [addFaculties] = useAddAcademicFacultyMutation();
 
-  const handleSubmit = (data) => {
-    console.log(data);
+  const facultiesOption = facultiesData?.data?.map((item) => ({
+    value: item._id,
+    label: item.fullName,
+  }));
+
+  const handleSubmit = ({ facultyInfo }) => {
+    const facultyData = {
+      courseId: facultyInfo.key,
+      data,
+    };
+
+    console.log(facultyData);
+
+    addFaculties(facultyData);
   };
 
   const showModal = () => {

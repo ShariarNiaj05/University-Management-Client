@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import PHInput from "../../../components/form/PHInput";
 import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
 import { TResponse } from "../../../types";
+import PHSelect from "../../../components/form/PHSelect";
 
 const CreateCourse = () => {
   const [addSemester] = useAddRegisteredSemesterMutation();
@@ -50,7 +51,12 @@ const CreateCourse = () => {
           <PHInput type="text" name="prefix" label="Prefix" />
           <PHInput type="text" name="code" label="Code" />
           <PHInput type="text" name="credits" label="Credit" />
-
+          <PHSelect
+            mode="multiple"
+            options={}
+            name="preRequisiteCourse"
+            label="preRequisiteCourse"
+          />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

@@ -4,19 +4,22 @@ import { Button, Col, Flex } from "antd";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
 import PHInput from "../../../components/form/PHInput";
-import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useAddRegisteredSemesterMutation,
+  useGetAllCoursesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 import { TResponse } from "../../../types";
 import PHSelect from "../../../components/form/PHSelect";
 
 const CreateCourse = () => {
   const [addSemester] = useAddRegisteredSemesterMutation();
-  const { data: academicSemester } = useGetAllSemestersQuery([
-    { name: "sort", value: "year" },
-  ]);
-  const academicSemesterOptions = academicSemester?.data?.map((item) => ({
+  const { data: courses } = useGetAllCoursesQuery(undefined);
+
+  const coursesOptions = courses?.data?.map((item) => ({
     value: item._id,
-    label: `${item.name} ${item.year}`,
+    label: item.title,
   }));
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 
@@ -53,7 +56,7 @@ const CreateCourse = () => {
           <PHInput type="text" name="credits" label="Credit" />
           <PHSelect
             mode="multiple"
-            options={}
+            options={coursesOptions}
             name="preRequisiteCourse"
             label="preRequisiteCourse"
           />

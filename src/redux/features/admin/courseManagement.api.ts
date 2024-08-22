@@ -60,7 +60,7 @@ const courseManagementApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["semester"],
-      transformResponse: (response: TResponseRedux<TSemester[]>) => {
+      transformResponse: (response: TResponseRedux<any[]>) => {
         return {
           data: response.data,
           meta: response.meta,

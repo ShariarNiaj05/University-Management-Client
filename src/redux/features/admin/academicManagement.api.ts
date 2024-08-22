@@ -1,6 +1,7 @@
 import { TQueryParam, TResponseRedux } from "../../../types";
 import {
   TAcademicDepartment,
+  TAcademicFaculty,
   TAcademicSemester,
 } from "../../../types/academicManagement.type";
 import { baseApi } from "../../api/baseApi";
@@ -65,6 +66,14 @@ const academicManagementApi = baseApi.injectEndpoints({
     addAcademicFaculty: builder.mutation({
       query: (data) => ({
         url: "/academic-faculties/create-academic-faculty",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    addAcademicDepartment: builder.mutation({
+      query: (data) => ({
+        url: "/academic-departments/create-academic-department",
         method: "POST",
         body: data,
       }),

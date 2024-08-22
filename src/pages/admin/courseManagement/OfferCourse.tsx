@@ -4,10 +4,16 @@ import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
 
 const OfferCourse = () => {
+  const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
+
+  const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
+    value: item._id,
+    label: item.name,
+  }));
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
-
   return (
     <Flex justify="center" align="center">
       <Col span={6}>

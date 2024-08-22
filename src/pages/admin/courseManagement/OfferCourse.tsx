@@ -27,6 +27,7 @@ const OfferCourse = () => {
       <Col span={6}>
         <PHForm onSubmit={onSubmit}>
           <PHSelectWithWatch
+            onValueChange={setId}
             label="Academic Semester"
             name="academicSemester"
             options={academicSemesterOptions}

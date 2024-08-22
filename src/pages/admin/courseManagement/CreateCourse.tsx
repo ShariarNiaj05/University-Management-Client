@@ -4,14 +4,14 @@ import { Button, Col, Flex } from "antd";
 import { toast } from "sonner";
 import PHInput from "../../../components/form/PHInput";
 import {
-  useAddRegisteredSemesterMutation,
+  useAddCourseMutation,
   useGetAllCoursesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
 import { TResponse } from "../../../types";
 import PHSelect from "../../../components/form/PHSelect";
 
 const CreateCourse = () => {
-  const [addSemester] = useAddRegisteredSemesterMutation();
+  const [createCourse] = useAddCourseMutation();
   const { data: courses } = useGetAllCoursesQuery(undefined);
 
   const preRequisiteCourseOptions = courses?.data?.map((item) => ({
@@ -32,7 +32,7 @@ const CreateCourse = () => {
     };
 
     try {
-      const res = (await addSemester(courseData)) as TResponse<any>;
+      const res = (await createCourse(courseData)) as TResponse<any>;
       console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });

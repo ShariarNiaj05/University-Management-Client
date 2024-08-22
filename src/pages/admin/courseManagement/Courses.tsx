@@ -1,9 +1,11 @@
 import { Button, Modal, Table } from "antd";
-import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useAddFacultiesMutation,
+  useGetAllCoursesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 import { useState } from "react";
 import PHForm from "../../../components/form/PHForm";
 import PHSelect from "../../../components/form/PHSelect";
-import { useAddAcademicFacultyMutation } from "../../../redux/features/admin/academicManagement.api";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/userManagement.api";
 
 const Courses = () => {
@@ -62,7 +64,7 @@ const Courses = () => {
 const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
-  const [addFaculties] = useAddAcademicFacultyMutation();
+  const [addFaculties] = useAddFacultiesMutation();
 
   const facultiesOption = facultiesData?.data?.map((item) => ({
     value: item._id,

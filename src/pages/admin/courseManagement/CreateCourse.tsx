@@ -1,7 +1,6 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import { Button, Col, Flex } from "antd";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
 import PHInput from "../../../components/form/PHInput";
 import {
@@ -15,7 +14,7 @@ const CreateCourse = () => {
   const [addSemester] = useAddRegisteredSemesterMutation();
   const { data: courses } = useGetAllCoursesQuery(undefined);
 
-  const coursesOptions = courses?.data?.map((item) => ({
+  const preRequisiteCourseOptions = courses?.data?.map((item) => ({
     value: item._id,
     label: item.title,
   }));
@@ -23,14 +22,17 @@ const CreateCourse = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 
-    const semesterData = {
+    const courseData = {
       ...data,
-      minCredit: Number(data?.minCredit),
-      maxCredit: Number(data?.maxCredit),
+      isDeleted: false,
+      preRequisiteCourse: data.preRequisiteCourse.map((item) => ({
+        course: item,
+        isDeleted: false,
+      })),
     };
 
     try {
-      const res = (await addSemester(semesterData)) as TResponse<any>;
+      const res = (await addSemester(courseData)) as TResponse<any>;
       console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });
@@ -40,7 +42,7 @@ const CreateCourse = () => {
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
-    console.log(semesterData);
+    console.log(courseData);
   };
 
   return (
@@ -56,7 +58,7 @@ const CreateCourse = () => {
           <PHInput type="text" name="credits" label="Credit" />
           <PHSelect
             mode="multiple"
-            options={coursesOptions}
+            options={preRequisiteCourseOptions}
             name="preRequisiteCourse"
             label="preRequisiteCourse"
           />

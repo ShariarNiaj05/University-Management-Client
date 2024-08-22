@@ -3,6 +3,10 @@ import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManag
 import { useState } from "react";
 import PHForm from "../../../components/form/PHForm";
 import PHSelect from "../../../components/form/PHSelect";
+import {
+  useAddAcademicFacultyMutation,
+  useGetAcademicFacultiesQuery,
+} from "../../../redux/features/admin/academicManagement.api";
 
 const Courses = () => {
   // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
@@ -59,6 +63,8 @@ const Courses = () => {
 
 const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: facultiesData } = useGetAcademicFacultiesQuery(undefined);
+  const [addFaculties] = useAddAcademicFacultyMutation();
 
   const handleSubmit = (data) => {
     console.log(data);

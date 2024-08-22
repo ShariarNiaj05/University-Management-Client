@@ -7,6 +7,7 @@ import { useState } from "react";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 
 const OfferCourse = () => {
+  const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
 
   console.log("Inside parent component", id);

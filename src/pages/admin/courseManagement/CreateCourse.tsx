@@ -24,11 +24,15 @@ const CreateCourse = () => {
 
     const courseData = {
       ...data,
+      code: Number(data.code),
+      credits: Number(data.credits),
       isDeleted: false,
-      preRequisiteCourse: data.preRequisiteCourse.map((item) => ({
-        course: item,
-        isDeleted: false,
-      })),
+      preRequisiteCourse: data.preRequisiteCourse
+        ? data.preRequisiteCourse?.map((item) => ({
+            course: item,
+            isDeleted: false,
+          }))
+        : [],
     };
 
     try {

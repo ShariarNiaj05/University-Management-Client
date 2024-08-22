@@ -1,6 +1,8 @@
 import { Button, Modal, Table } from "antd";
 import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
 import { useState } from "react";
+import PHForm from "../../../components/form/PHForm";
+import PHSelect from "../../../components/form/PHSelect";
 
 const Courses = () => {
   // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
@@ -27,8 +29,8 @@ const Courses = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
-        return <Button>Assign Faculty</Button>;
+      render: (item) => {
+        return <AddFacultyModal data={item} />;
       },
     },
   ];
@@ -55,8 +57,12 @@ const Courses = () => {
   );
 };
 
-const AddFacultyModal = () => {
+const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (data) => {
+    console.log(data);
+  };
 
   const showModal = () => {
     setIsModalOpen(true);

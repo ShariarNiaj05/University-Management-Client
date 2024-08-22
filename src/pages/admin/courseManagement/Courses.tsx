@@ -1,5 +1,6 @@
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
+import { useState } from "react";
 
 const Courses = () => {
   // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
@@ -51,6 +52,40 @@ const Courses = () => {
       dataSource={tableData}
       // onChange={onChange}
     />
+  );
+};
+
+const AddFacultyModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={showModal}>Add Faculty</Button>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <PHForm onSubmit={handleSubmit}>
+          <PHSelect
+            mode="multiple"
+            options={facultiesOption}
+            name="faculties"
+            label="Faculty"
+          />
+          <Button htmlType="submit">Submit</Button>
+        </PHForm>
+      </Modal>
+    </>
   );
 };
 

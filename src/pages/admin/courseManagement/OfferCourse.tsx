@@ -33,7 +33,7 @@ const OfferCourse = () => {
             options={academicSemesterOptions}
           />
 
-          <PHInput type="text" name="test" label="Test" />
+          <PHInput disabled={!id} type="text" name="test" label="Test" />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

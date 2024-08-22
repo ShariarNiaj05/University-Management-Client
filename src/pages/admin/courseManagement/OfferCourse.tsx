@@ -2,6 +2,7 @@ import { Button, Col, Flex } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
+import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
 
 const OfferCourse = () => {
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);

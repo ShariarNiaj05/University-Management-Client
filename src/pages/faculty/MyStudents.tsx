@@ -52,18 +52,27 @@ const AddMarksModal = ({ studentInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addMark] = useAddMarkMutation();
 
+  const handleSubmit = async (data) => {
+    console.log(data);
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <Button onClick={showModal}>Add Faculty</Button>
       <Modal
         title="Basic Modal"
         open={isModalOpen}
-        // onCancel={handleCancel}
+        onCancel={handleCancel}
         footer={null}
       >
-        <PHForm
-        //   onSubmit={handleSubmit}
-        >
+        <PHForm onSubmit={handleSubmit}>
           <PHInput type="text" name="classTest1" label="Class Test 1" />
           <PHInput type="text" name="classTest2" label="Class Test 2" />
           <PHInput type="text" name="midTerm" label="Midterm" />

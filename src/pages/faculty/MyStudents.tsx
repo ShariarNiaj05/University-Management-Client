@@ -34,7 +34,7 @@ const MyStudents = () => {
       title: "Action",
       key: "x",
       render: (item) => {
-        return <div>sdfsdfsdf</div>;
+        return <AddMarksModal studentInfo={item} />;
       },
     },
   ];

@@ -4,16 +4,18 @@ const OfferedCourse = () => {
   const { data: offeredCourseData } = useGetAllOfferedCoursesQuery(undefined);
   const [enroll] = useEnrolCourseMutation();
 
-  const singleObject = offeredCourseData?.data?.reduce((acc, item) => {
+  const singleObject = offeredCourseData?.data?.reduce((acc: TCourse, item) => {
+    const key = item.course.title;
+    acc[key] = acc[key] || { courseTitle: key, sections: [] };
 
-    acc["courseTitle"] = acc.
+    acc[key].section.push({
+      section: 
+    })
     return acc;
   }, {});
 
-  
   const modifiedData = Object.values(singleObject ? singleObject : {});
 
-  
   return (
     <div>
       <h1> This is OfferedCourse component </h1>
@@ -22,3 +24,7 @@ const OfferedCourse = () => {
 };
 
 export default OfferedCourse;
+
+type TCourse = {
+  [index: string]: any;
+};

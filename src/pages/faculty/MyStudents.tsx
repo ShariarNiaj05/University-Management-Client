@@ -53,7 +53,22 @@ const AddMarksModal = ({ studentInfo }) => {
   const [addMark] = useAddMarkMutation();
 
   const handleSubmit = async (data) => {
-    console.log(data);
+    const studentMark = {
+      semesterRegistration: studentInfo.semesterRegistration,
+      offeredCourse: studentInfo.offeredCourse,
+      student: studentInfo.student,
+      courseMarks: {
+        classTest1: Number(data.classTest1),
+        midTerm: Number(data.midTerm),
+        classTest2: Number(data.classTest2),
+        finalTerm: Number(data.finalTerm),
+      },
+    };
+
+    console.log(studentMark);
+    const res = await addMark(studentMark);
+
+    console.log(res);
   };
 
   const showModal = () => {

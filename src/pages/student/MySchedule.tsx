@@ -3,7 +3,23 @@ import { useGetAllEnrolledCoursesQuery } from "../../redux/features/student/stud
 const MySchedule = () => {
   const { data } = useGetAllEnrolledCoursesQuery(undefined);
   console.log(data);
-  return <div>MySchedule</div>;
+  return (
+    <div>
+      {data?.data?.map((item) => {
+        return (
+          <div>
+            <div>{item.course.title}</div>
+            <div>{item.offeredCourse.section}</div>
+            <div>
+              {item.offeredCourse.days.map((item) => (
+                <span> {item}</span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default MySchedule;

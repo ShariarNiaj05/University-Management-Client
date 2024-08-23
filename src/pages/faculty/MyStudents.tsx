@@ -37,7 +37,7 @@ const MyStudents = () => {
       },
     },
   ];
-  return <div>MyStudents</div>;
+  return <Table columns={columns} dataSource={tableData} />;
 };
 
 export default MyStudents;

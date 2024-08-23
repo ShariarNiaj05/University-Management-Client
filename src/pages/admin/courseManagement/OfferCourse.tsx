@@ -91,6 +91,13 @@ const OfferCourse = () => {
             options={academicDepartmentOptions}
           />
 
+          <PHSelectWithWatch
+            onValueChange={setCourseId}
+            options={courseOptions}
+            name="course"
+            label="Course"
+          />
+
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

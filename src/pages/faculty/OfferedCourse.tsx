@@ -24,6 +24,15 @@ const OfferedCourse = () => {
 
   const modifiedData = Object.values(singleObject ? singleObject : {});
 
+  const handleEnroll = async (id) => {
+    const enrollData = {
+      offeredCourse: id,
+    };
+
+    const res = await enroll(enrollData);
+    console.log(res);
+  };
+
   return (
     <Row gutter={[0, 20]}>
       {modifiedData.map((item) => {

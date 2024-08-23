@@ -19,6 +19,9 @@ const MyCourses = () => {
     value: item.course._id,
   }));
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    navigate(`/faculty/courses/${data.semesterRegistration}/${data.course}`);
+  };
   return (
     <Flex justify="center" align="center">
       <Col span={6}>

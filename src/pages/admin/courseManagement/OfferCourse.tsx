@@ -14,6 +14,7 @@ import {
   useGetAllRegisteredSemestersQuery,
   useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
+import PHSelect from "../../../components/form/PHSelect";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
@@ -72,14 +73,12 @@ const OfferCourse = () => {
     <Flex justify="center" align="center">
       <Col span={6}>
         <PHForm onSubmit={onSubmit}>
-          <PHSelectWithWatch
-            onValueChange={setCourseId}
-            label="Academic Semester"
-            name="academicSemester"
-            options={academicSemesterOptions}
+          <PHSelect
+            name="semesterRegistration"
+            label="Semester Registrations"
+            options={semesterRegistrationOptions}
           />
 
-          <PHInput disabled={!id} type="text" name="test" label="Test" />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

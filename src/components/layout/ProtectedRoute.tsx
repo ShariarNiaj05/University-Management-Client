@@ -9,14 +9,16 @@ import { Navigate } from "react-router-dom";
 
 type TProtectedRoute = {
   children: ReactNode;
-  role: string;
+  role: string | undefined;
 };
 const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
   const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
+  console.log(user);
+  console.log(role);
 
-  if (role !== user?.role) {
+  if (role !== undefined || role !== user?.role) {
     dispatch(logout());
     return <Navigate to={"/login"} replace={true} />;
   }

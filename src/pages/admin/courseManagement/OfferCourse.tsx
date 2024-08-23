@@ -15,6 +15,7 @@ import {
   useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
 import PHSelect from "../../../components/form/PHSelect";
+import { weekDaysOptions } from "../../../constants/global";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
@@ -114,8 +115,8 @@ const OfferCourse = () => {
             label="Days"
           />
 
-          <PHTimePicker name="startTime" label="Start Time" />
-          <PHTimePicker name="endTime" label="End Time" />
+          {/* <PHTimePicker name="startTime" label="Start Time" />
+          <PHTimePicker name="endTime" label="End Time" /> */}
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

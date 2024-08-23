@@ -1,4 +1,5 @@
 import { TQueryParam, TResponseRedux } from "../../../types";
+import { TOfferedCourse } from "../../../types/studentCourse.type";
 import { baseApi } from "../../api/baseApi";
 
 const studentCourseApi = baseApi.injectEndpoints({
@@ -32,8 +33,8 @@ const studentCourseApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllOfferedCoursesQuery,
-  useEnrolCourseMutation,
-  useGetAllEnrolledCoursesQuery,
+  //   useEnrolCourseMutation,
+  //   useGetAllEnrolledCoursesQuery,
 } = studentCourseApi;
 
 /* 

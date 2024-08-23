@@ -33,6 +33,10 @@ const OfferedCourse = () => {
     console.log(res);
   };
 
+  if (!modifiedData.length) {
+    return <p>No available courses</p>;
+  }
+
   return (
     <Row gutter={[0, 20]}>
       {modifiedData.map((item) => {

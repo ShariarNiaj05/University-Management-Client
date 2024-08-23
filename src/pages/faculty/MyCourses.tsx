@@ -9,6 +9,11 @@ const MyCourses = () => {
   const navigate = useNavigate();
   console.log(facultyCoursesData);
 
+  const semesterOptions = facultyCoursesData?.data?.map((item) => ({
+    label: `${item.academicSemester.name} ${item.academicSemester.year}`,
+    value: item.semesterRegistration._id,
+  }));
+
   return (
     <Flex justify="center" align="center">
       <Col span={6}>

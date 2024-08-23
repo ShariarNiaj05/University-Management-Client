@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetAllFacultyCoursesQuery } from "../../redux/features/faculty/facultyCourses.api";
+import { Table } from "antd";
 
 const MyStudents = () => {
   const { registerSemesterId, courseId } = useParams();

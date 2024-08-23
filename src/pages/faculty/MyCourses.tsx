@@ -14,6 +14,11 @@ const MyCourses = () => {
     value: item.semesterRegistration._id,
   }));
 
+  const courseOptions = facultyCoursesData?.data?.map((item) => ({
+    label: item.course.title,
+    value: item.course._id,
+  }));
+
   return (
     <Flex justify="center" align="center">
       <Col span={6}>

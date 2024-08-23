@@ -114,6 +114,8 @@ const OfferCourse = () => {
             label="Days"
           />
 
+          <PHTimePicker name="startTime" label="Start Time" />
+          <PHTimePicker name="endTime" label="End Time" />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

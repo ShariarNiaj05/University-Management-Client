@@ -79,6 +79,18 @@ const OfferCourse = () => {
             options={semesterRegistrationOptions}
           />
 
+          <PHSelect
+            name="academicFaculty"
+            label="Academic Faculty"
+            options={academicFacultyOptions}
+          />
+
+          <PHSelect
+            name="academicDepartment"
+            label="Academic Department"
+            options={academicDepartmentOptions}
+          />
+
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

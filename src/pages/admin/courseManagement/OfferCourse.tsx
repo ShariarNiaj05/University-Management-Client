@@ -2,7 +2,10 @@ import { Button, Col, Flex } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
-import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
+import {
+  useGetAcademicDepartmentsQuery,
+  useGetAcademicFacultiesQuery,
+} from "../../../redux/features/admin/academicManagement.api";
 import { useState } from "react";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 
@@ -14,6 +17,9 @@ const OfferCourse = () => {
 
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
 
+  const { data: academicDepartmentData } =
+    useGetAcademicDepartmentsQuery(undefined);
+
   const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
     value: item._id,
     label: item.name,
@@ -22,6 +28,13 @@ const OfferCourse = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
+
+  const academicDepartmentOptions = academicDepartmentData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: item.name,
+    })
+  );
 
   return (
     <Flex justify="center" align="center">

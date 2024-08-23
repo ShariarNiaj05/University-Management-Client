@@ -3,6 +3,7 @@ import { useGetAllFacultyCoursesQuery } from "../../redux/features/faculty/facul
 import { Button, Col, Flex } from "antd";
 import PHForm from "../../components/form/PHForm";
 import PHSelect from "../../components/form/PHSelect";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const MyCourses = () => {
   const { data: facultyCoursesData } = useGetAllFacultyCoursesQuery(undefined);

@@ -8,6 +8,7 @@ import {
 } from "../../../redux/features/admin/academicManagement.api";
 import { useState } from "react";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
+import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
@@ -20,14 +21,22 @@ const OfferCourse = () => {
   const { data: academicDepartmentData } =
     useGetAcademicDepartmentsQuery(undefined);
 
-  const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
+  const { data: coursesData } = useGetAllCoursesQuery(undefined);
+
+  const { data: facultiesData, isFetching: fetchingFaculties } =
+    useGetCourseFacultiesQuery(courseId, { skip: !courseId });
+
+  const semesterRegistrationOptions = semesterRegistrationData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: `${item.academicSemester.name} ${item.academicSemester.year}`,
+    })
+  );
+
+  const academicFacultyOptions = academicFacultyData?.data?.map((item) => ({
     value: item._id,
     label: item.name,
   }));
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-  };
 
   const academicDepartmentOptions = academicDepartmentData?.data?.map(
     (item) => ({
@@ -35,6 +44,20 @@ const OfferCourse = () => {
       label: item.name,
     })
   );
+
+  const courseOptions = coursesData?.data?.map((item) => ({
+    value: item._id,
+    label: item.title,
+  }));
+
+  const facultiesOptions = facultiesData?.data?.faculties?.map((item) => ({
+    value: item._id,
+    label: item.fullName,
+  }));
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+  };
 
   return (
     <Flex justify="center" align="center">

@@ -104,6 +104,16 @@ const OfferCourse = () => {
             label="Faculty"
             options={facultiesOptions}
           />
+
+          <PHInput type="text" name="section" label="Section" />
+          <PHInput type="text" name="maxCapacity" label="Max Capacity" />
+          <PHSelect
+            mode="multiple"
+            options={weekDaysOptions}
+            name="days"
+            label="Days"
+          />
+
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

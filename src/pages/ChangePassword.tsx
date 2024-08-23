@@ -15,6 +15,13 @@ const ChangePassword = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
+
+    const res = (await changePassword(data)) as TResponse<any>;
+    console.log(res?.data?.success);
+    if (res?.data?.success) {
+      dispatch(logout());
+      navigate("/login");
+    }
   };
 
   return (

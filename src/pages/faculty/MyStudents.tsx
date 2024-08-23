@@ -18,7 +18,25 @@ const MyStudents = () => {
       offeredCourse: offeredCourse._id,
     })
   );
-
+  const columns = [
+    {
+      title: "Name",
+      key: "name",
+      dataIndex: "name",
+    },
+    {
+      title: "Roll",
+      key: "roll",
+      dataIndex: "roll",
+    },
+    {
+      title: "Action",
+      key: "x",
+      render: (item) => {
+        return <div>sdfsdfsdf</div>;
+      },
+    },
+  ];
   return <div>MyStudents</div>;
 };
 

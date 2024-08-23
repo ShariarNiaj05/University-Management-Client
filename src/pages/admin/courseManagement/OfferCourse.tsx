@@ -8,13 +8,22 @@ import {
 } from "../../../redux/features/admin/academicManagement.api";
 import { useState } from "react";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
-import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useCreateOfferedCourseMutation,
+  useGetAllCoursesQuery,
+  useGetAllRegisteredSemestersQuery,
+  useGetCourseFacultiesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
-  const [id, setId] = useState("");
 
-  console.log("Inside parent component", id);
+  const [addOfferedCourse] = useCreateOfferedCourseMutation();
+
+  const { data: semesterRegistrationData } = useGetAllRegisteredSemestersQuery([
+    { name: "sort", value: "year" },
+    { name: "status", value: "UPCOMING" },
+  ]);
 
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
 
@@ -64,7 +73,7 @@ const OfferCourse = () => {
       <Col span={6}>
         <PHForm onSubmit={onSubmit}>
           <PHSelectWithWatch
-            onValueChange={setId}
+            onValueChange={setCourseId}
             label="Academic Semester"
             name="academicSemester"
             options={academicSemesterOptions}

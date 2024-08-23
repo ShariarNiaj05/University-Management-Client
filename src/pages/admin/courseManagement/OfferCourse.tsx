@@ -98,6 +98,12 @@ const OfferCourse = () => {
             label="Course"
           />
 
+          <PHSelect
+            disabled={!courseId || fetchingFaculties}
+            name="faculty"
+            label="Faculty"
+            options={facultiesOptions}
+          />
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>

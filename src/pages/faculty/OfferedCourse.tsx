@@ -1,5 +1,8 @@
 import { Button, Col, Row } from "antd";
-import { useGetAllOfferedCoursesQuery } from "../../redux/features/student/studentCourseApi";
+import {
+  useEnrolCourseMutation,
+  useGetAllOfferedCoursesQuery,
+} from "../../redux/features/student/studentCourseApi";
 
 const OfferedCourse = () => {
   const { data: offeredCourseData } = useGetAllOfferedCoursesQuery(undefined);

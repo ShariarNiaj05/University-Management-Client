@@ -36,38 +36,35 @@ const studentCourseApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["offeredCourse"],
     }),
+    getAllEnrolledCourses: builder.query({
+      query: (args) => {
+        console.log(args);
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+        return {
+          url: "/enrolled-courses/my-enrolled-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["offeredCourse"],
+      transformResponse: (response: TResponseRedux<any>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
   }),
 });
 
 export const {
   useGetAllOfferedCoursesQuery,
   useEnrolCourseMutation,
-  // useGetAllEnrolledCoursesQuery,
+  useGetAllEnrolledCoursesQuery,
 } = studentCourseApi;
-
-/* 
-getAllEnrolledCourses: builder.query({
-    query: (args) => {
-      console.log(args);
-      const params = new URLSearchParams();
-
-      if (args) {
-        args.forEach((item: TQueryParam) => {
-          params.append(item.name, item.value as string);
-        });
-      }
-      return {
-        url: "/enrolled-courses/my-enrolled-courses",
-        method: "GET",
-        params: params,
-      };
-    },
-    providesTags: ["offeredCourse"],
-    transformResponse: (response: TResponseRedux<any>) => {
-      return {
-        data: response.data,
-        meta: response.meta,
-      };
-    },
-  }),
-   */
